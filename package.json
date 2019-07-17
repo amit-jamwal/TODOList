@@ -4,11 +4,29 @@
   "description": "sample boilerplate for react startup",
   "main": "index.js",
   "scripts": {
+    "serve": "nodemon server/server.js --ignore components",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "amit",
   "license": "ISC",
   "dependencies": {
-    "webpack": "^1.13.3"
+    "@babel/polyfill": "^7.4.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-storage": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.6",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "express": "^4.17.1",
+    "webpack": "^4.33.0",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }

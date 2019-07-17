@@ -1,17 +1,30 @@
 var webpack = require('webpack');
-var path = require('path');
-
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-console.log(__dirname,   APP_DIR + '/index.jsx')
-module.export	 = {
-	entry: 'src/client/app/index.jsx',
-	output: {
-		path: 'src/client/public',
-		filename: 'bundle.js'
-	},
-	devtool: "source-map"
-};
-
-
+module.exports = {
+  devtool: 'inline-source-map',
+  entry: {
+    app: './client/client.js'
+  },
+  output: {
+    path: require("path").resolve("./dist"),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
+  module: {
+    rules: [{
+      test: /\.m?js$/,
+      enforce: 'pre',
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        query: {
+          presets: ['@babel/react', '@babel/env']
+        }
+      }]
+    }]
+  }
+}
